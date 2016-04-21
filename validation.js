@@ -12,18 +12,13 @@ staticTest($._("Add spans"), function() {
     var added1SpanP = {"p span:not(:empty)": 1};
     var added2SpansP = {"p span:not(:empty)": 2};
     var addedSpanClassP = {"p span.first-sentence:not(:empty)": 2};
-    var addedClassAttrP = "p span[class]";
+    var addedClassAttrP = "span[class]";
     
     var usedIdP = "span#first-sentence";
     var misspelledSentenceHtmlP = [
             "p span.first-sentance", 
             "p span.first-snetence", 
             "p span.first-snetence"
-        ];
-        var misspelledSentenceCssP = [
-            ".first-sentance", 
-            ".first-snetence", 
-            ".first-snetence"
         ];
         
     var misspelledSentence = function() {
@@ -44,8 +39,12 @@ staticTest($._("Add spans"), function() {
             result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."));
         } else if (misspelledSentence()) {
             result = fail($._("It looks like you misspelled your class name. Make sure it says \"first-sentence\"."));
-        } else if (!htmlMatches(addedSpanClassP)) {
+        } else if (!htmlMatches(addedClassAttrP) && htmlMatches(added2SpansP)) {
             result = fail($._("Looks like you added <span>s. Make sure you also add the 'first-sentence' class to each span too."));
+        } else if (htmlMatches(addedClassAttrP)) {
+             if (!htmlMatches(addedSpanClassP)) {
+                result = fail($._("Make sure your class name is spelled, \"first-sentence\". You shouldn't be making up your own names for this challenge."));
+            }
         }
         
         // presumably no longer needed since the instructions in step 2 replace the funcion of this message.
@@ -65,22 +64,41 @@ staticTest($._("Style Spans"), function() {
     
     var styledClassP1 = ".first-sentence { font-weight: $bold}";
     var styledClassP2 = ".first-sentence { text-decoration: underline}";
+    var styledClassP3 = "$selector {}";
+    
     var usedIdP = "#first-sentence {}";
     
     var fontStyleP  = ".first-sentence { font-style: _; }";
     var fontFamilyP  = ".first-sentence { font-family: _; }";
     
+    var misspelledSentenceCssP = [
+        ".first-sentance", 
+        ".first-snetence", 
+        ".first-snetence"
+    ];
+    
+    // returns true if "sentence" is misspelled
+    var misspelledSentence = function($selector) {
+        return misspelledSentenceCssP.indexOf($selector) !== -1;
+    };
+
     var isBold = function($bold) {
         return $bold == "bold" || parseInt($bold, 10) > 400;
     };
     
-    result = cssMatch(styledClassP1, isBold) || cssMatches(styledClassP2);
+    result = anyPass(cssMatch(styledClassP1, isBold), cssMatch(styledClassP2));
     
-    if (cssMatches(usedIdP)) {
-        result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."));
-    } else if (cssMatches(fontStyleP) || cssMatches(fontFamilyP)) {
-        result = fail($._("To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."));
+    
+    if (!passes(result)) {
+        if (cssMatches(usedIdP)) {
+            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."));
+        } else if (cssMatches(fontStyleP) || cssMatches(fontFamilyP)) {
+            result = fail($._("To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."));
+        } else if (cssMatches(styledClassP3, misspelledSentence)) {
+            result = fail($._("It looks like you misspelled your class selector. Make sure it says \".first-sentence\"."));
+        }
     }
+
     
     assertMatch(result, descrip, displayP);
 });
