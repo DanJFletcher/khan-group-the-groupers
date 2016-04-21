@@ -1,4 +1,7 @@
 
+var misspelledSentenceCSS = [".first-sentance", ".first-snetence", ".first-setence"];
+var misspelledSentenceHTML = ["first-sentance", "first-snetence", "first-snetence"];
+
 // --------------------------------------
 // step 1
 staticTest($._("Add spans"), function() {
@@ -9,15 +12,38 @@ staticTest($._("Add spans"), function() {
     var added1SpanP = {"p span:not(:empty)": 1};
     var added2SpansP = {"p span:not(:empty)": 2};
     var addedSpanClassP = {"p span.first-sentence:not(:empty)": 2};
+    var addedClassAttrP = "p span[class]";
     
     var usedIdP = "span#first-sentence";
+    var misspelledSentenceHtmlP = [
+            "p span.first-sentance", 
+            "p span.first-snetence", 
+            "p span.first-snetence"
+        ];
+        var misspelledSentenceCssP = [
+            ".first-sentance", 
+            ".first-snetence", 
+            ".first-snetence"
+        ];
+        
+    var misspelledSentence = function() {
+        // check for misspellings of "sentence"
+        for (var i = 0; i < misspelledSentenceHtmlP.length; i++) {
+            if (htmlMatches(misspelledSentenceHtmlP[i])) {
+                return true;
+            } 
+        }
+        return false;
+    };
     
     result = htmlMatch(added1SpanP);
     if (passes(result)) {
         if (!htmlMatches(added2SpansP)) {
-            result = fail($._("Looks like you added 1 <span>, make sure you add another <span> to the first sentence of the second paragraph."));
+            result = fail($._("Looks like you added 1 `<span>`, make sure you add another `<span>` to the first sentence of the second paragraph."));
         } else if (htmlMatches(usedIdP)) {
             result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."));
+        } else if (misspelledSentence()) {
+            result = fail($._("It looks like you misspelled your class name. Make sure it says \"first-sentence\"."));
         } else if (!htmlMatches(addedSpanClassP)) {
             result = fail($._("Looks like you added <span>s. Make sure you also add the 'first-sentence' class to each span too."));
         }
@@ -26,7 +52,7 @@ staticTest($._("Add spans"), function() {
         // else if (!cssMatches(styledClassP1, isBold) && !cssMatches(styledClassP2)) {
         //     result = fail($._("Once you've added the <span>s, add a style for the 'first-sentence' class that makes them bold or underline."));
         // } 
-    } 
+    }
     assertMatch(result, descrip, displayP);
 });
 
@@ -35,7 +61,7 @@ staticTest($._("Add spans"), function() {
 staticTest($._("Style Spans"), function() {
     var result = null;
     var descrip = $._("Good! Now, using a class selector, write a CSS rule to style your \"first-sentence\" class. Make the sentence either bold, or underlined.");
-    var displayP = "";
+    var displayP = "<style>\n  .first-sentence { \n    _: _;\n  }\n</style>";
     
     var styledClassP1 = ".first-sentence { font-weight: $bold}";
     var styledClassP2 = ".first-sentence { text-decoration: underline}";
