@@ -3,8 +3,8 @@
 // step 1
 staticTest($._("Add spans"), function() {
     var result = null;
-    var descrip = $._("This webpage describes groupers, a type of large ocean fish. In the first step, your job is to to make the first sentences of each paragraph stand out. Start by adding `<span>` tags around each first sentence. Then give both of your `<span`> tags a class called \"first-sentence\".");
-    var displayP = "";
+    var descrip = $._("This webpage describes groupers, a type of large ocean fish. In the first step, your job is to to make the first sentences of each paragraph stand out. Start by adding `<span>` tags around each first sentence. Then give both of your `<span>` tags a class called \"first-sentence\".");
+    var displayP = "<p><span class=\"first-sentence\">...mouth.</span>...</p>";
     
     var added1SpanP = {"p span:not(:empty)": 1};
     var added2SpansP = {"p span:not(:empty)": 2};
