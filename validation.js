@@ -10,30 +10,22 @@ staticTest($._("Add spans"), function() {
     var added2SpansP = {"p span:not(:empty)": 2};
     var addedSpanClassP = {"p span.first-sentence:not(:empty)": 2};
     
-    var styledClassP1 = ".first-sentence { font-weight: $bold}";
-    var styledClassP2 = ".first-sentence { text-decoration: underline}";
-    var usedIdP = "#first-sentence {}";
-    var putIdP = "span#first-sentence";
-    var fontStyleP  = ".first-sentence { font-style: _; }";
-    var fontFamilyP  = ".first-sentence { font-family: _; }";
-    
-    var isBold = function($bold) {
-        return $bold == "bold" || parseInt($bold, 10) > 400;
-    };
+    var usedIdP = "span#first-sentence";
     
     result = htmlMatch(added1SpanP);
     if (passes(result)) {
         if (!htmlMatches(added2SpansP)) {
             result = fail($._("Looks like you added 1 <span>, make sure you add another <span> to the first sentence of the second paragraph."));
-        } else if (cssMatches(usedIdP) || htmlMatches(putIdP)) {
-            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag, and the '.' before the class name in your CSS selector."));
+        } else if (htmlMatches(usedIdP)) {
+            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."));
         } else if (!htmlMatches(addedSpanClassP)) {
             result = fail($._("Looks like you added <span>s. Make sure you also add the 'first-sentence' class to each span too."));
-        } else if (cssMatches(fontStyleP) || cssMatches(fontFamilyP)) {
-            result = fail($._("To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."));
-        } else if (!cssMatches(styledClassP1, isBold) && !cssMatches(styledClassP2)) {
-            result = fail($._("Once you've added the <span>s, add a style for the 'first-sentence' class that makes them bold or underline."));
-        } 
+        }
+        
+        // presumably no longer needed since the instructions in step 2 replace the funcion of this message.
+        // else if (!cssMatches(styledClassP1, isBold) && !cssMatches(styledClassP2)) {
+        //     result = fail($._("Once you've added the <span>s, add a style for the 'first-sentence' class that makes them bold or underline."));
+        // } 
     } 
     assertMatch(result, descrip, displayP);
 });
@@ -45,7 +37,24 @@ staticTest($._("Style Spans"), function() {
     var descrip = $._("Good! Now, using a class selector, write a CSS rule to style your \"first-sentence\" class. Make the sentence either bold, or underlined.");
     var displayP = "";
     
-    result = fail();
+    var styledClassP1 = ".first-sentence { font-weight: $bold}";
+    var styledClassP2 = ".first-sentence { text-decoration: underline}";
+    var usedIdP = "#first-sentence {}";
+    
+    var fontStyleP  = ".first-sentence { font-style: _; }";
+    var fontFamilyP  = ".first-sentence { font-family: _; }";
+    
+    var isBold = function($bold) {
+        return $bold == "bold" || parseInt($bold, 10) > 400;
+    };
+    
+    result = cssMatch(styledClassP1, isBold) || cssMatches(styledClassP2);
+    
+    if (cssMatches(usedIdP)) {
+        result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."));
+    } else if (cssMatches(fontStyleP) || cssMatches(fontFamilyP)) {
+        result = fail($._("To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."));
+    }
     
     assertMatch(result, descrip, displayP);
 });
@@ -61,8 +70,6 @@ staticTest($._("Add a div"), function() {
     var addedDivClassP = {"div.info p:not(:empty)": 1};
     var addedDivIdP    = "div#info";
     
-    var styledClassP1 = ".info { background: $bc}";
-    var styledClassP2 = ".info { background-color: $bc}";
     
     result = htmlMatch(addedDivP);
     if (passes(result)) {
@@ -70,9 +77,12 @@ staticTest($._("Add a div"), function() {
             result = fail($._("Add a class of 'info', not an id."));
         } else if (!htmlMatches(addedDivClassP)) {
             result = fail($._("Looks like you added a <div>. Make sure you also add the 'info' class to the div."));
-        } else if (!cssMatches(styledClassP1) && !cssMatches(styledClassP2)) {
-            result = fail($._("Once you've added the <div>, add a style for the 'info' class that gives it a background color."));
-        }
+        } 
+        
+        // no longer needed since this is described in step 4.
+        // else if (!cssMatches(styledClassP1) && !cssMatches(styledClassP2)) {
+        //     result = fail($._("Once you've added the <div>, add a style for the 'info' class that gives it a background color."));
+        // }
     }
     assertMatch(result, descrip, displayP);
 });
@@ -84,7 +94,10 @@ staticTest($._("Style the Div"), function() {
     var descrip = $._("Last step! Using a class selector, write a CSS rule to style your 'info' class. Give it a cool looking background color.");
     var displayP = "";
     
-    result = fail();
+    var styledClassP1 = ".info { background: $bc}";
+    var styledClassP2 = ".info { background-color: $bc}";
+    
+    result = cssMatch(styledClassP1) || cssMatch(styledClassP2);
     
     assertMatch(result, descrip, displayP);
 });
