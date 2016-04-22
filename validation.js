@@ -143,7 +143,7 @@ staticTest($._("Style the Div"), function() {
     
     var usedIdP = "#info {}";
     
-    result = cssMatch(styledClassP1) || cssMatch(styledClassP2);
+    result = anyPass(cssMatch(styledClassP1), cssMatch(styledClassP2));
     
     if (!passes(result)) {
         if (cssMatches(usedIdP)) {
