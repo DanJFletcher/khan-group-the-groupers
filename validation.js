@@ -1,10 +1,11 @@
 
-var misspelledSentenceCSS = [".first-sentance", ".first-snetence", ".first-setence"];
-var misspelledSentenceHTML = ["first-sentance", "first-snetence", "first-snetence"];
+
 
 // --------------------------------------
-// step 1
+// -------------------------------------- STEP 1
+
 staticTest($._("Add spans"), function() {
+    
     var result = null;
     var descrip = $._("This webpage describes groupers, a type of large ocean fish. In the first step, your job is to to make the first sentences of each paragraph stand out. Start by adding `<span>` tags around each first sentence. Then give both of your `<span>` tags a class called \"first-sentence\".");
     var displayP = "<p><span class=\"first-sentence\">...mouth.</span>...</p>";
@@ -15,11 +16,7 @@ staticTest($._("Add spans"), function() {
     var addedClassAttrP = "span[class]";
     
     var usedIdP = "span#first-sentence";
-    var misspelledSentenceHtmlP = [
-            "p span.first-sentance", 
-            "p span.first-snetence", 
-            "p span.first-snetence"
-        ];
+    var misspelledSentenceHtmlP = ["p span.first-sentance", "p span.first-snetence", "p span.first-snetence"];
         
     var misspelledSentence = function() {
         // check for misspellings of "sentence"
@@ -32,6 +29,7 @@ staticTest($._("Add spans"), function() {
     };
     
     result = htmlMatch(added1SpanP);
+    
     if (passes(result)) {
         if (!htmlMatches(added2SpansP)) {
             result = fail($._("Looks like you added 1 `<span>`, make sure you add another `<span>` to the first sentence of the second paragraph."));
@@ -46,18 +44,19 @@ staticTest($._("Add spans"), function() {
                 result = fail($._("Make sure your class name is spelled, \"first-sentence\". You shouldn't be making up your own names for this challenge."));
             }
         }
-        
-        // presumably no longer needed since the instructions in step 2 replace the funcion of this message.
-        // else if (!cssMatches(styledClassP1, isBold) && !cssMatches(styledClassP2)) {
-        //     result = fail($._("Once you've added the <span>s, add a style for the 'first-sentence' class that makes them bold or underline."));
-        // } 
     }
+    
     assertMatch(result, descrip, displayP);
+    
 });
 
+
+
 // --------------------------------------
-// step 2
+// -------------------------------------- STEP 2
+
 staticTest($._("Style Spans"), function() {
+    
     var result = null;
     var descrip = $._("Good! Now, using a class selector, write a CSS rule to style your \"first-sentence\" class. Make the sentence either bold, or underlined.");
     var displayP = "<style>\n  .first-sentence { \n    _: _;\n  }\n</style>";
@@ -71,11 +70,7 @@ staticTest($._("Style Spans"), function() {
     var fontStyleP  = ".first-sentence { font-style: _; }";
     var fontFamilyP  = ".first-sentence { font-family: _; }";
     
-    var misspelledSentenceCssP = [
-        ".first-sentance", 
-        ".first-snetence", 
-        ".first-snetence"
-    ];
+    var misspelledSentenceCssP = [".first-sentance", ".first-snetence", ".first-snetence"];
     
     // returns true if "sentence" is misspelled
     var misspelledSentence = function($selector) {
@@ -99,13 +94,17 @@ staticTest($._("Style Spans"), function() {
         }
     }
 
-    
     assertMatch(result, descrip, displayP);
+    
 });
 
+
+
 // --------------------------------------
-// step 3
+// -------------------------------------- STEP 3
+
 staticTest($._("Add a div"), function() {
+    
     var result = null;
     var descrip = $._("Great! Wrap the paragraphs in a single `<div>`, and then give the `div` a class of \"info\".");
     var displayP = "";
@@ -122,17 +121,17 @@ staticTest($._("Add a div"), function() {
         } else if (!htmlMatches(addedDivClassP)) {
             result = fail($._("Looks like you added a <div>. Make sure you also add the 'info' class to the div."));
         } 
-        
-        // no longer needed since this is described in step 4.
-        // else if (!cssMatches(styledClassP1) && !cssMatches(styledClassP2)) {
-        //     result = fail($._("Once you've added the <div>, add a style for the 'info' class that gives it a background color."));
-        // }
     }
+    
     assertMatch(result, descrip, displayP);
+    
 });
 
+
+
 // --------------------------------------
-// step 4
+// -------------------------------------- STEP 4
+
 staticTest($._("Style the Div"), function() {
     var result = null;
     var descrip = $._("Last step! Using a class selector, write a CSS rule to style your 'info' class. Give it a cool looking background color.");
@@ -152,6 +151,7 @@ staticTest($._("Style the Div"), function() {
     }
     
     assertMatch(result, descrip, displayP);
+    
 });
 
 
