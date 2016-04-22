@@ -83,7 +83,7 @@ staticTest($._("Style Spans"), function() {
     };
 
     var isBold = function($bold) {
-        return $bold == "bold" || parseInt($bold, 10) > 400;
+        return $bold == "bold" || parseInt($bold, 10) >= 400;
     };
     
     result = anyPass(cssMatch(styledClassP1, isBold), cssMatch(styledClassP2));
