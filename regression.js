@@ -16,12 +16,28 @@
  * STEP 1 FAIL
  * ******************************/
     
-    
+{
+    code: "<p><span>Groupers</span></p>",
+    steps: ["Looks like you added 1 `<span>`, make sure you add another `<span>` to the first sentence of the second paragraph."]
+},
+
+
+{
+    code: "<p><span>Groupers are others</span></p> <p><span>Groupers are things</span></p>",
+    steps: ["Looks like you added <span>s. Make sure you also add the 'first-sentence' class to each span too."]
+},
+
+
+{
+    code: "<p><span id='first-sentence'>Groupers are others</span></p> <p><span>Groupers are things</span></p>",
+    steps: ["Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."]
+},
+
 /********************************
  * STEP 2 PASS
  * ******************************/
  
-{
+ {
     code: "<style>.first-sentence { font-weight: bold; }</style><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p>",
     steps: ["pass", "pass"]
 },
@@ -43,7 +59,11 @@
 /********************************
  * STEP 2 FAIL
  * ******************************/
-    
+   
+{
+    code: "<style>.first-sentence { font-style:underline; }</style> <p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p>",
+    steps: ["pass", "To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."]
+}, 
     
 /********************************
  * STEP 3 PASS
@@ -53,7 +73,7 @@
     code: "<style>.first-sentence { text-decoration: underline; }</style><div class='info'><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p></div>",
     steps: ["pass", "pass", "pass"]
 },
- 
+
 /********************************
  * STEP 3 FAIL
  * ******************************/
@@ -63,7 +83,7 @@
  * STEP 4 PASS
  * ******************************/
  
-{
+ {
     code: "<style>.first-sentence { text-decoration: underline; } .info { background: red; }</style><div class='info'><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p></div>",
     steps: ["pass", "pass", "pass", "pass"]
 },
@@ -72,7 +92,7 @@
 {
     code: "<style>.first-sentence { text-decoration: underline; } .info { background-color: red; }</style><div class='info'><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p></div>",
     steps: ["pass", "pass", "pass", "pass"]
-}
+},
  
 /********************************
  * STEP 4 FAIL
