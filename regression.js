@@ -21,7 +21,7 @@
  * STEP 2 PASS
  * ******************************/
  
- {
+{
     code: "<style>.first-sentence { font-weight: bold; }</style><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p>",
     steps: ["pass", "pass"]
 },
