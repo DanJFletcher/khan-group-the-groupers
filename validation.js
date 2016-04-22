@@ -141,7 +141,15 @@ staticTest($._("Style the Div"), function() {
     var styledClassP1 = ".info { background: $bc}";
     var styledClassP2 = ".info { background-color: $bc}";
     
+    var usedIdP = "#info {}";
+    
     result = cssMatch(styledClassP1) || cssMatch(styledClassP2);
+    
+    if (!passes(result)) {
+        if (cssMatches(usedIdP)) {
+            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the \".\" before the class name in your CSS selector."));
+        }
+    }
     
     assertMatch(result, descrip, displayP);
 });
