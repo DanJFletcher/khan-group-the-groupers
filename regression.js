@@ -30,7 +30,7 @@
     // 40
     {   // uses id instead of class attribute.
         code: "<p><span id='first-sentence'>Groupers are others</span></p> <p><span>Groupers are things</span></p>",
-        steps: ["Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."]
+        steps: ["Remember, you want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."]
     },
     
     // 50
@@ -42,7 +42,7 @@
     // 60
     {   // makes up own class name.
         code: "<p><span class='not-first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p>",
-        steps: ["Make sure your class name is spelled, \"first-sentence\". You shouldn't be making up your own names for this challenge."]
+        steps: ["Make sure your class name is spelled \"first-sentence\". You shouldn't be making up your own names for this challenge."]
     },
     
     /********************************
@@ -82,7 +82,7 @@
     // 110
     {   // uses id instead of class selector.
         code: "<style>#first-sentence { font-weight: bold; }</style><p><span class='first-sentence'>Groupers are others</span></p> <p><span class='first-sentence'>Groupers are things</span></p>",
-        steps: ["pass", "Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."]
+        steps: ["pass", "Remember, you want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."]
     },
     
     // 120

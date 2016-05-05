@@ -34,14 +34,14 @@ staticTest($._("Add spans"), function() {
         if (!htmlMatches(added2SpansP)) {
             result = fail($._("Looks like you added 1 `<span>`, make sure you add another `<span>` to the first sentence of the second paragraph."));
         } else if (htmlMatches(usedIdP)) {
-            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."));
+            result = fail($._("Remember, you want to use classes for this challenge, not ids. That means you should use the `class` attribute on your HTML tag."));
         } else if (misspelledSentence()) {
             result = fail($._("It looks like you misspelled your class name. Make sure it says \"first-sentence\"."));
         } else if (!htmlMatches(addedClassAttrP) && htmlMatches(added2SpansP)) {
             result = fail($._("Looks like you added <span>s. Make sure you also add the 'first-sentence' class to each span too."));
         } else if (htmlMatches(addedClassAttrP)) {
              if (!htmlMatches(addedSpanClassP)) {
-                result = fail($._("Make sure your class name is spelled, \"first-sentence\". You shouldn't be making up your own names for this challenge."));
+                result = fail($._("Make sure your class name is spelled \"first-sentence\". You shouldn't be making up your own names for this challenge."));
             }
         }
     }
@@ -86,7 +86,7 @@ staticTest($._("Style Spans"), function() {
     
     if (!passes(result)) {
         if (cssMatches(usedIdP)) {
-            result = fail($._("Remember, we want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."));
+            result = fail($._("Remember, you want to use classes for this challenge, not ids. That means you should use the `class` selector for your CSS rule, which is the '.' before the class name in your CSS selector."));
         } else if (cssMatches(fontStyleP) || cssMatches(fontFamilyP)) {
             result = fail($._("To make text bold, use the `font-weight` property. To make text underline, use the `text-decoration` property. If you forget those properties in the future, you can always search the web."));
         } else if (cssMatches(styledClassP3, misspelledSentence)) {
